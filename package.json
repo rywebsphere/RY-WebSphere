@@ -1,0 +1,14 @@
+{
+  "name": "ry-websphere",
+  "version": "1.0.0",
+  "description": "RY WebSphere - Complete Premium Web Development Agency Platform",
+  "scripts": {
+    "client": "npm --prefix client run dev",
+    "server": "npm --prefix server run dev",
+    "seed": "npm --prefix server run seed",
+    "build": "npm --prefix client run build"
+  },
+  "keywords": ["agency", "web-development", "ry-websphere"],
+  "author": "Ranjan Yadav",
+  "license": "ISC"
+}

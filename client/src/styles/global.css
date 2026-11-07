@@ -1,0 +1,728 @@
+/* ==========================================================================
+   RY WebSphere - Global Design System & Variables
+   Theme: Deep Navy, Slate Charcoal, Electric Blue & Violet Accents
+   ========================================================================== */
+
+:root {
+  /* Fonts */
+  --font-heading: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  /* Color Palette - Default Dark Mode (Deep Navy Charcoal) */
+  --bg-primary: #090d16;
+  --bg-secondary: #0f172a;
+  --bg-surface: #141e33;
+  --bg-card: rgba(20, 30, 51, 0.7);
+  --bg-card-hover: rgba(26, 38, 64, 0.85);
+  
+  --text-primary: #f8fafc;
+  --text-secondary: #cbd5e1;
+  --text-muted: #94a3b8;
+  
+  --border-color: rgba(255, 255, 255, 0.08);
+  --border-focus: rgba(59, 130, 246, 0.5);
+  --border-hover: rgba(99, 102, 241, 0.35);
+
+  --accent-blue: #3b82f6;
+  --accent-violet: #6366f1;
+  --accent-purple: #8b5cf6;
+  --accent-cyan: #06b6d4;
+  --accent-emerald: #10b981;
+  --accent-amber: #f59e0b;
+  --accent-rose: #f43f5e;
+
+  --accent-gradient: linear-gradient(135deg, #3b82f6 0%, #6366f1 50%, #8b5cf6 100%);
+  --accent-gradient-cyan: linear-gradient(135deg, #06b6d4 0%, #3b82f6 100%);
+  --glow-primary: rgba(59, 130, 246, 0.15);
+  --glow-card: 0 10px 30px -10px rgba(59, 130, 246, 0.12);
+  --glow-hover: 0 16px 40px -10px rgba(99, 102, 241, 0.22);
+
+  --navbar-bg: rgba(9, 13, 22, 0.85);
+  --navbar-border: rgba(255, 255, 255, 0.07);
+  
+  --badge-bg: rgba(59, 130, 246, 0.12);
+  --badge-text: #60a5fa;
+
+  --transition-fast: 0.2s ease;
+  --transition-normal: 0.3s ease;
+}
+
+/* Light Theme Variables */
+[data-theme="light"] {
+  --bg-primary: #f8fafc;
+  --bg-secondary: #ffffff;
+  --bg-surface: #f1f5f9;
+  --bg-card: #ffffff;
+  --bg-card-hover: #f8fafc;
+  
+  --text-primary: #0f172a;
+  --text-secondary: #334155;
+  --text-muted: #64748b;
+  
+  --border-color: #e2e8f0;
+  --border-focus: rgba(37, 99, 235, 0.5);
+  --border-hover: #cbd5e1;
+
+  --accent-blue: #2563eb;
+  --accent-violet: #4f46e5;
+  --accent-purple: #7c3aed;
+  --accent-cyan: #0284c7;
+
+  --accent-gradient: linear-gradient(135deg, #2563eb 0%, #4f46e5 50%, #7c3aed 100%);
+  --accent-gradient-cyan: linear-gradient(135deg, #0284c7 0%, #2563eb 100%);
+  --glow-primary: rgba(37, 99, 235, 0.08);
+  --glow-card: 0 4px 20px -2px rgba(15, 23, 42, 0.08);
+  --glow-hover: 0 10px 25px -4px rgba(79, 70, 229, 0.15);
+
+  --navbar-bg: rgba(255, 255, 255, 0.92);
+  --navbar-border: #e2e8f0;
+
+  --badge-bg: rgba(37, 99, 235, 0.08);
+  --badge-text: #1d4ed8;
+}
+
+/* Reset and Base Styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.6;
+  min-height: 100vh;
+  overflow-x: hidden;
+  transition: background-color var(--transition-normal), color var(--transition-normal);
+}
+
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
+}
+
+a {
+  color: var(--accent-blue);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+a:hover {
+  color: var(--accent-violet);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #334155;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #475569;
+}
+
+/* Typography Gradient Helpers */
+.ry-gradient-text {
+  background: var(--accent-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+}
+
+.ry-gradient-cyan {
+  background: var(--accent-gradient-cyan);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+}
+
+/* Glassmorphism & Card Styles */
+.ry-card {
+  background: var(--bg-card);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  box-shadow: var(--glow-card);
+  transition: transform var(--transition-normal), border-color var(--transition-normal), box-shadow var(--transition-normal), background-color var(--transition-normal);
+}
+
+.ry-card:hover {
+  border-color: var(--border-hover);
+  box-shadow: var(--glow-hover);
+}
+
+.ry-card-interactive:hover {
+  transform: translateY(-4px);
+}
+
+/* Button System */
+.btn-ry-primary {
+  background: var(--accent-gradient);
+  color: #ffffff !important;
+  border: none;
+  font-family: var(--font-heading);
+  font-weight: 600;
+  padding: 0.65rem 1.4rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 14px rgba(59, 130, 246, 0.35);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast), opacity var(--transition-fast);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.btn-ry-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(99, 102, 241, 0.45);
+  opacity: 0.95;
+  color: #ffffff !important;
+}
+
+.btn-ry-secondary {
+  background: var(--bg-surface);
+  color: var(--text-primary) !important;
+  border: 1px solid var(--border-color);
+  font-family: var(--font-heading);
+  font-weight: 600;
+  padding: 0.65rem 1.4rem;
+  border-radius: 10px;
+  transition: transform var(--transition-fast), border-color var(--transition-fast), background var(--transition-fast);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.btn-ry-secondary:hover {
+  background: var(--bg-card-hover);
+  border-color: var(--accent-blue);
+  transform: translateY(-2px);
+  color: var(--text-primary) !important;
+}
+
+.btn-ry-outline {
+  background: transparent;
+  color: var(--accent-blue) !important;
+  border: 1px solid var(--accent-blue);
+  font-family: var(--font-heading);
+  font-weight: 600;
+  padding: 0.6rem 1.3rem;
+  border-radius: 10px;
+  transition: all var(--transition-fast);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.btn-ry-outline:hover {
+  background: rgba(59, 130, 246, 0.1);
+  border-color: var(--accent-violet);
+  color: var(--accent-violet) !important;
+  transform: translateY(-2px);
+}
+
+/* Badges */
+.ry-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.35rem 0.85rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  border-radius: 20px;
+  background: var(--badge-bg);
+  color: var(--badge-text);
+  border: 1px solid rgba(59, 130, 246, 0.2);
+}
+
+.ry-badge-demo {
+  background: rgba(245, 158, 11, 0.12);
+  color: #f59e0b;
+  border: 1px solid rgba(245, 158, 11, 0.3);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.ry-badge-verified {
+  background: rgba(16, 185, 129, 0.12);
+  color: #10b981;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+/* Section Container */
+.ry-section {
+  padding: 5rem 0;
+  position: relative;
+}
+
+.ry-section-title {
+  font-size: 2.25rem;
+  margin-bottom: 0.75rem;
+  color: var(--text-primary);
+}
+
+.ry-section-subtitle {
+  font-size: 1.1rem;
+  color: var(--text-muted);
+  max-width: 650px;
+  margin: 0 auto 3rem auto;
+}
+
+/* Background Gradients & Glows */
+.ry-hero-bg {
+  position: relative;
+  overflow: hidden;
+}
+
+.ry-hero-bg::before {
+  content: '';
+  position: absolute;
+  top: -150px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 700px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.18) 0%, rgba(99, 102, 241, 0.12) 40%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.ry-hero-bg::after {
+  content: '';
+  position: absolute;
+  bottom: -100px;
+  right: -50px;
+  width: 500px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(6, 182, 212, 0.12) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Form Controls */
+.form-control-ry, .form-select-ry {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+  border-radius: 10px;
+  padding: 0.75rem 1rem;
+  font-size: 0.95rem;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+  width: 100%;
+}
+
+.form-control-ry:focus, .form-select-ry:focus {
+  background-color: var(--bg-surface);
+  border-color: var(--border-focus);
+  color: var(--text-primary);
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+}
+
+.form-control-ry::placeholder {
+  color: var(--text-muted);
+  opacity: 0.7;
+}
+
+/* Floating WhatsApp button */
+.ry-floating-whatsapp {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  background: #25d366;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  box-shadow: 0 8px 24px rgba(37, 211, 102, 0.4);
+  z-index: 1040;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.ry-floating-whatsapp:hover {
+  transform: scale(1.08) translateY(-2px);
+  color: #ffffff;
+  box-shadow: 0 12px 28px rgba(37, 211, 102, 0.55);
+}
+
+/* Breadcrumb Styling */
+.ry-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  margin-bottom: 1.5rem;
+}
+
+.ry-breadcrumb a {
+  color: var(--text-muted);
+}
+
+.ry-breadcrumb a:hover {
+  color: var(--accent-blue);
+}
+
+/* Tables in Admin & Public */
+.ry-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  color: var(--text-primary);
+}
+
+.ry-table th {
+  background: var(--bg-surface);
+  color: var(--text-secondary);
+  font-weight: 600;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.9rem 1rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.ry-table td {
+  padding: 1rem;
+  border-bottom: 1px solid var(--border-color);
+  font-size: 0.92rem;
+  vertical-align: middle;
+  color: var(--text-primary);
+}
+
+.ry-table tr:hover td {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+[data-theme="light"] .ry-table tr:hover td {
+  background: rgba(0, 0, 0, 0.02);
+}
+
+/* Surface Utility Class */
+.bg-surface {
+  background-color: var(--bg-surface) !important;
+  color: var(--text-primary);
+}
+
+[data-theme="light"] .bg-surface {
+  background-color: #f1f5f9 !important;
+  color: #0f172a !important;
+  border-color: #e2e8f0 !important;
+}
+
+[data-theme="light"] .badge.bg-surface {
+  background-color: #e2e8f0 !important;
+  color: #1e293b !important;
+  border-color: #cbd5e1 !important;
+}
+
+/* ==========================================================================
+   THEME-AWARE CONTRAST & TYPOGRAPHY OVERRIDES FOR DARK & LIGHT MODES
+   Ensures text, headings, badges, tables, and inputs are 100% visible and sharp
+   ========================================================================== */
+
+/* Dark Mode Typography & Bootstrap Synchronization */
+:root, [data-theme="dark"], [data-bs-theme="dark"] {
+  --bs-body-color: var(--text-primary);
+  --bs-body-color-rgb: 248, 250, 252;
+  --bs-body-bg: var(--bg-primary);
+  --bs-secondary-color: var(--text-muted);
+  --bs-secondary-color-rgb: 148, 163, 184;
+  --bs-secondary-bg: var(--bg-secondary);
+  --bs-tertiary-color: var(--text-muted);
+  --bs-tertiary-bg: var(--bg-surface);
+  --bs-border-color: var(--border-color);
+  --bs-heading-color: var(--text-primary);
+  --bs-link-color: var(--accent-blue);
+}
+
+[data-theme="dark"] .text-muted,
+[data-theme="dark"] .form-text,
+:root .text-muted {
+  color: var(--text-muted) !important;
+}
+
+[data-theme="dark"] .text-secondary,
+:root .text-secondary {
+  color: var(--text-secondary) !important;
+}
+
+[data-theme="dark"] .text-body,
+:root .text-body {
+  color: var(--text-primary) !important;
+}
+
+[data-theme="dark"] .text-dark:not(.badge.bg-warning):not(.btn-warning) {
+  color: var(--text-primary) !important;
+}
+
+[data-theme="dark"] h1, [data-theme="dark"] h2, [data-theme="dark"] h3,
+[data-theme="dark"] h4, [data-theme="dark"] h5, [data-theme="dark"] h6,
+[data-theme="dark"] .h1, [data-theme="dark"] .h2, [data-theme="dark"] .h3,
+[data-theme="dark"] .h4, [data-theme="dark"] .h5, [data-theme="dark"] .h6 {
+  color: var(--text-primary) !important;
+}
+
+/* Form Controls in Dark Mode */
+[data-theme="dark"] .form-control,
+[data-theme="dark"] .form-select,
+[data-theme="dark"] .form-control-ry,
+[data-theme="dark"] .form-select-ry {
+  background-color: var(--bg-surface) !important;
+  color: var(--text-primary) !important;
+  border-color: var(--border-color) !important;
+}
+
+[data-theme="dark"] .form-control::placeholder,
+[data-theme="dark"] .form-control-ry::placeholder {
+  color: #94a3b8 !important;
+  opacity: 0.8 !important;
+}
+
+[data-theme="dark"] select option {
+  background-color: #0f172a !important;
+  color: #f8fafc !important;
+}
+
+/* Tables in Dark Mode */
+[data-theme="dark"] .table,
+[data-theme="dark"] .table td,
+[data-theme="dark"] .table th,
+[data-theme="dark"] .ry-table td,
+[data-theme="dark"] .ry-table th {
+  color: var(--text-primary) !important;
+  border-color: var(--border-color) !important;
+  background-color: transparent !important;
+}
+
+/* Modals & Dropdowns in Dark Mode */
+[data-theme="dark"] .modal-content,
+[data-theme="dark"] .dropdown-menu {
+  background-color: var(--bg-secondary) !important;
+  color: var(--text-primary) !important;
+  border-color: var(--border-color) !important;
+}
+
+[data-theme="dark"] .dropdown-item {
+  color: var(--text-secondary) !important;
+}
+
+[data-theme="dark"] .dropdown-item:hover {
+  background-color: var(--bg-surface) !important;
+  color: var(--text-primary) !important;
+}
+
+/* Cards, List Groups & Accordions in Dark Mode */
+[data-theme="dark"] .card,
+[data-theme="dark"] .accordion-item,
+[data-theme="dark"] .list-group-item {
+  background-color: var(--bg-secondary) !important;
+  color: var(--text-primary) !important;
+  border-color: var(--border-color) !important;
+}
+
+/* Outline Buttons in Dark Mode */
+[data-theme="dark"] .btn-outline-secondary {
+  color: var(--text-secondary) !important;
+  border-color: var(--border-color) !important;
+}
+
+[data-theme="dark"] .btn-outline-secondary:hover {
+  background-color: var(--bg-surface) !important;
+  color: var(--text-primary) !important;
+}
+
+/* Alert boxes in Dark Mode */
+[data-theme="dark"] .alert-info {
+  background-color: rgba(59, 130, 246, 0.12) !important;
+  color: #93c5fd !important;
+  border-color: rgba(59, 130, 246, 0.3) !important;
+}
+
+[data-theme="dark"] .alert-success {
+  background-color: rgba(16, 185, 129, 0.12) !important;
+  color: #6ee7b7 !important;
+  border-color: rgba(16, 185, 129, 0.3) !important;
+}
+
+[data-theme="dark"] .alert-danger {
+  background-color: rgba(239, 68, 68, 0.12) !important;
+  color: #fca5a5 !important;
+  border-color: rgba(239, 68, 68, 0.3) !important;
+}
+
+[data-theme="dark"] .alert-warning {
+  background-color: rgba(245, 158, 11, 0.12) !important;
+  color: #fcd34d !important;
+  border-color: rgba(245, 158, 11, 0.3) !important;
+}
+
+/* ==========================================================================
+   LIGHT MODE CONTRAST OVERRIDES
+   ========================================================================== */
+[data-theme="light"], [data-bs-theme="light"] {
+  --bs-body-color: #0f172a;
+  --bs-body-color-rgb: 15, 23, 42;
+  --bs-body-bg: #f8fafc;
+  --bs-secondary-color: #64748b;
+  --bs-secondary-color-rgb: 100, 116, 139;
+  --bs-secondary-bg: #f1f5f9;
+  --bs-tertiary-color: #94a3b8;
+  --bs-tertiary-bg: #e2e8f0;
+  --bs-border-color: #e2e8f0;
+  --bs-heading-color: #0f172a;
+}
+
+[data-theme="light"] .text-muted,
+[data-theme="light"] .form-text {
+  color: #64748b !important;
+}
+
+[data-theme="light"] .text-secondary {
+  color: #334155 !important;
+}
+
+[data-theme="light"] .form-control,
+[data-theme="light"] .form-select,
+[data-theme="light"] .form-control-ry,
+[data-theme="light"] .form-select-ry {
+  background-color: #ffffff !important;
+  color: #0f172a !important;
+  border-color: #cbd5e1 !important;
+}
+
+[data-theme="light"] select option {
+  background-color: #ffffff !important;
+  color: #0f172a !important;
+}
+
+/* Force white text on dedicated elements (e.g. badges, announcement bar) */
+[data-force-white],
+[data-force-white] *,
+.ry-announcement-bar,
+.ry-announcement-bar span,
+.ry-announcement-bar a,
+.ry-announcement-bar button {
+  color: #ffffff !important;
+}
+
+.ry-announcement-bar .text-muted,
+.ry-announcement-bar .text-white-50 {
+  color: rgba(255, 255, 255, 0.75) !important;
+}
+
+/* Demo Top Bar (Theme Adaptive) */
+.ry-demo-top-bar {
+  background: linear-gradient(90deg, #1e1b4b 0%, #0f172a 100%) !important;
+  border-bottom: 1px solid rgba(59, 130, 246, 0.4) !important;
+  color: #ffffff !important;
+}
+
+[data-theme="light"] .ry-demo-top-bar {
+  background: linear-gradient(90deg, #e0e7ff 0%, #eff6ff 100%) !important;
+  border-bottom: 1px solid #c7d2fe !important;
+  color: #1e1b4b !important;
+}
+
+[data-theme="light"] .ry-demo-top-bar span,
+[data-theme="light"] .ry-demo-top-bar strong {
+  color: #1e1b4b !important;
+}
+
+/* ==========================================================================
+   FINAL CALL TO ACTION BANNER (Section right above Footer)
+   100% Theme Adaptive for both Dark and Light Modes
+   ========================================================================== */
+.ry-cta-section {
+  position: relative;
+  overflow: hidden;
+  border-top: 1px solid var(--border-color);
+  transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+/* Dark Mode CTA */
+:root .ry-cta-section,
+[data-theme="dark"] .ry-cta-section {
+  background: linear-gradient(135deg, #090d16 0%, #0f172a 50%, #1e1b4b 100%) !important;
+  border-top: 1px solid var(--border-color) !important;
+}
+
+:root .ry-cta-section .ry-cta-title,
+[data-theme="dark"] .ry-cta-section .ry-cta-title {
+  color: #ffffff !important;
+}
+
+:root .ry-cta-section .ry-cta-desc,
+[data-theme="dark"] .ry-cta-section .ry-cta-desc {
+  color: #cbd5e1 !important;
+}
+
+/* Light Mode CTA (Directly above Footer) */
+[data-theme="light"] .ry-cta-section {
+  background: linear-gradient(135deg, #f0fdf4 0%, #eff6ff 50%, #f8fafc 100%) !important;
+  border-top: 1px solid #e2e8f0 !important;
+}
+
+[data-theme="light"] .ry-cta-section .ry-cta-title {
+  color: #0f172a !important;
+}
+
+[data-theme="light"] .ry-cta-section .ry-cta-desc {
+  color: #334155 !important;
+}
+
+[data-theme="light"] .text-white:not(.btn-ry-primary *):not(.badge.bg-primary):not(.badge.bg-danger):not(.badge.bg-success):not(.btn-success *):not(.btn-danger *):not(.badge.bg-dark):not([data-force-white]):not([data-force-white] *):not(.ry-announcement-bar *),
+[data-theme="light"] .text-light:not(.btn-ry-primary *):not(.badge.bg-primary):not(.badge.bg-danger):not(.badge.bg-success):not(.btn-success *):not(.btn-danger *):not([data-force-white]):not([data-force-white] *):not(.ry-announcement-bar *) {
+  color: var(--text-primary) !important;
+}
+
+[data-theme="light"] .ry-card h1,
+[data-theme="light"] .ry-card h2,
+[data-theme="light"] .ry-card h3,
+[data-theme="light"] .ry-card h4,
+[data-theme="light"] .ry-card h5,
+[data-theme="light"] .ry-card h6 {
+  color: var(--text-primary) !important;
+}
+
+[data-theme="light"] .form-label {
+  color: var(--text-primary) !important;
+}
+
+/* Responsive utilities */
+@media (max-width: 768px) {
+  .ry-section {
+    padding: 3.5rem 0;
+  }
+  .ry-section-title {
+    font-size: 1.85rem;
+  }
+}
