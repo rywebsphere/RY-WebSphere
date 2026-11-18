@@ -134,6 +134,11 @@ export const submitEnquiry = async (req, res, next) => {
       projectDescription,
       message,
       preferredContactMethod,
+      nicheCategory,
+      selectedPages,
+      selectedFeatures,
+      referenceImages,
+      referenceLink,
       trapField, // Honeypot field for bot spam detection
     } = req.body;
 
@@ -146,8 +151,8 @@ export const submitEnquiry = async (req, res, next) => {
     }
 
     const resolvedService = (requiredService || serviceRequested || 'Website Development').trim();
-    const resolvedCategory = (businessCategory || 'General Business').trim();
-    const resolvedDescription = (projectDescription || message || 'New consultation inquiry').trim();
+    const resolvedCategory = (nicheCategory || businessCategory || 'General Business').trim();
+    const resolvedDescription = (projectDescription || message || 'Smart Studio Project Inquiry').trim();
     const resolvedBusiness = (businessName || 'Independent Client').trim();
 
     // Server-side validation
@@ -172,6 +177,25 @@ export const submitEnquiry = async (req, res, next) => {
     const sanitizedCategory = validator.escape(resolvedCategory);
     const sanitizedPhone = phone.trim().replace(/[^\d+()\-\s]/g, '');
 
+    // Format selected pages and features arrays
+    const parsedPages = Array.isArray(selectedPages)
+      ? selectedPages.map((p) => String(p).trim()).filter(Boolean)
+      : typeof selectedPages === 'string' && selectedPages
+      ? selectedPages.split(',').map((p) => p.trim()).filter(Boolean)
+      : [];
+
+    const parsedFeatures = Array.isArray(selectedFeatures)
+      ? selectedFeatures.map((f) => String(f).trim()).filter(Boolean)
+      : typeof selectedFeatures === 'string' && selectedFeatures
+      ? selectedFeatures.split(',').map((f) => f.trim()).filter(Boolean)
+      : [];
+
+    const parsedImages = Array.isArray(referenceImages)
+      ? referenceImages.filter((img) => typeof img === 'string' && img.length > 0)
+      : typeof referenceImages === 'string' && referenceImages
+      ? [referenceImages]
+      : [];
+
     const trackingCode = `RY-${Math.floor(10000 + Math.random() * 90000)}`;
 
     const newEnquiry = await Enquiry.create({
@@ -183,6 +207,11 @@ export const submitEnquiry = async (req, res, next) => {
       requiredService: resolvedService,
       selectedPackage: selectedPackage ? selectedPackage.trim() : 'Custom / Discussion',
       budget: budget ? budget.trim() : 'Flexible / Based on Scope',
+      nicheCategory: sanitizedCategory,
+      selectedPages: parsedPages,
+      selectedFeatures: parsedFeatures,
+      referenceImages: parsedImages,
+      referenceLink: referenceLink ? referenceLink.trim() : '',
       projectDescription: resolvedDescription,
       preferredContactMethod: preferredContactMethod || 'WhatsApp',
       status: 'New',

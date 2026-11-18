@@ -45,6 +45,28 @@ const EnquirySchema = new mongoose.Schema(
       default: 'Flexible / Based on Scope',
       trim: true,
     },
+    nicheCategory: {
+      type: String,
+      default: '',
+      trim: true,
+    },
+    selectedPages: {
+      type: [String],
+      default: [],
+    },
+    selectedFeatures: {
+      type: [String],
+      default: [],
+    },
+    referenceImages: {
+      type: [String], // Array of base64 data URLs or uploaded URLs
+      default: [],
+    },
+    referenceLink: {
+      type: String,
+      default: '',
+      trim: true,
+    },
     projectDescription: {
       type: String,
       required: [true, 'Project description is required'],

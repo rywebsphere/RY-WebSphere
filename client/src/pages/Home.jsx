@@ -30,6 +30,7 @@ import { useSettings } from '../context/SettingsContext';
 import { useCurrency } from '../context/CurrencyContext';
 import BeforeAfterSlider from '../components/common/BeforeAfterSlider';
 import WebsiteAuditTool from '../components/common/WebsiteAuditTool';
+import SmartProjectStudio from '../components/common/SmartProjectStudio';
 
 const Home = () => {
   const navigate = useNavigate();
@@ -581,7 +582,10 @@ const Home = () => {
         </div>
       </section>
 
-      {/* 6B. FREE WEBSITE HEALTH & SPEED AUDIT TOOL */}
+      {/* 6B. SMART PROJECT STUDIO & AI BLUEPRINT BUILDER */}
+      <SmartProjectStudio id="project-studio" />
+
+      {/* 6C. FREE WEBSITE HEALTH & SPEED AUDIT TOOL */}
       <section className="ry-section py-4" style={{ backgroundColor: 'var(--bg-secondary)' }}>
         <div className="container">
           <WebsiteAuditTool />

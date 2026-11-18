@@ -74,6 +74,7 @@ const AdminEnquiries = () => {
   });
   const [savingTracker, setSavingTracker] = useState(false);
   const [sendingEmail, setSendingEmail] = useState(false);
+  const [previewImage, setPreviewImage] = useState(null);
 
   const handleSendTrackingEmail = async (enquiryId) => {
     try {
@@ -661,6 +662,88 @@ const AdminEnquiries = () => {
               <div className="p-3 rounded-3 bg-surface border text-light small" style={{ whiteSpace: 'pre-line', lineHeight: '1.6' }}>
                 {selectedEnquiry.projectDescription || selectedEnquiry.message}
               </div>
+
+              {/* Smart Studio Details if available */}
+              {(selectedEnquiry.nicheCategory ||
+                (selectedEnquiry.selectedPages && selectedEnquiry.selectedPages.length > 0) ||
+                (selectedEnquiry.selectedFeatures && selectedEnquiry.selectedFeatures.length > 0) ||
+                (selectedEnquiry.referenceImages && selectedEnquiry.referenceImages.length > 0) ||
+                selectedEnquiry.referenceLink) && (
+                <div className="mt-3 p-3 rounded-3 border" style={{ backgroundColor: 'rgba(99, 102, 241, 0.05)', borderColor: 'rgba(99, 102, 241, 0.25)' }}>
+                  <h6 className="fw-bold text-primary mb-3 small text-uppercase">
+                    ✨ Smart Studio Configuration Brief
+                  </h6>
+
+                  {selectedEnquiry.nicheCategory && (
+                    <div className="mb-2">
+                      <span className="small text-muted me-2">Industry Niche:</span>
+                      <span className="badge bg-primary text-white fw-bold">{selectedEnquiry.nicheCategory}</span>
+                    </div>
+                  )}
+
+                  {selectedEnquiry.selectedPages && selectedEnquiry.selectedPages.length > 0 && (
+                    <div className="mb-2">
+                      <div className="small text-muted mb-1">Required Pages:</div>
+                      <div className="d-flex flex-wrap gap-1">
+                        {selectedEnquiry.selectedPages.map((pg, i) => (
+                          <span key={i} className="badge bg-surface border text-info small">
+                            {pg}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  {selectedEnquiry.selectedFeatures && selectedEnquiry.selectedFeatures.length > 0 && (
+                    <div className="mb-2">
+                      <div className="small text-muted mb-1">Selected Features & Integrations:</div>
+                      <div className="d-flex flex-wrap gap-1">
+                        {selectedEnquiry.selectedFeatures.map((ft, i) => (
+                          <span key={i} className="badge bg-success bg-opacity-25 text-success border border-success border-opacity-25 small">
+                            ✓ {ft}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  {selectedEnquiry.referenceLink && (
+                    <div className="mb-2 small">
+                      <span className="text-muted me-2">Reference Website Link:</span>
+                      <a
+                        href={selectedEnquiry.referenceLink.startsWith('http') ? selectedEnquiry.referenceLink : `https://${selectedEnquiry.referenceLink}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-info text-decoration-underline"
+                      >
+                        {selectedEnquiry.referenceLink} <FaExternalLinkAlt size={10} />
+                      </a>
+                    </div>
+                  )}
+
+                  {selectedEnquiry.referenceImages && selectedEnquiry.referenceImages.length > 0 && (
+                    <div className="mt-3">
+                      <div className="small text-muted mb-2 fw-semibold">Uploaded Design Reference Screenshots ({selectedEnquiry.referenceImages.length}):</div>
+                      <div className="d-flex flex-wrap gap-2">
+                        {selectedEnquiry.referenceImages.map((imgSrc, i) => (
+                          <div
+                            key={i}
+                            className="position-relative rounded-3 overflow-hidden border border-secondary shadow-sm"
+                            style={{ width: 110, height: 110, cursor: 'pointer', backgroundColor: '#090e1a' }}
+                            onClick={() => setPreviewImage(imgSrc)}
+                            title="Click to view full image"
+                          >
+                            <img src={imgSrc} alt={`Ref screenshot ${i + 1}`} className="w-100 h-100 object-fit-cover" />
+                            <div className="position-absolute bottom-0 start-0 end-0 bg-dark bg-opacity-75 text-center text-white small py-0.5" style={{ fontSize: '0.65rem' }}>
+                              <FaEye size={10} className="me-1" /> View Full
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                </div>
+              )}
             </div>
 
             {/* Internal Admin Notes */}
@@ -888,8 +971,8 @@ const AdminEnquiries = () => {
                   Official Payment Details (UPI / Bank Transfer):
                 </div>
                 <div className="small text-secondary">
-                  <strong>UPI ID:</strong> <code>9026402646@ybl</code> (Name: Ranjan Yadav)<br />
-                  <strong>WhatsApp Payment Confirmation:</strong> +91 90264 02646
+                  <strong>UPI ID:</strong> <code>7800462309@ybl</code> (Name: Ranjan Yadav)<br />
+                  <strong>WhatsApp Payment Confirmation:</strong> +91 7800462309
                 </div>
               </div>
 
@@ -898,6 +981,32 @@ const AdminEnquiries = () => {
                 <strong>Commercial Policy & Legal Transparency:</strong> RY WebSphere purchases custom domains and provisions Google Cloud hosting on the client's behalf to ensure seamless technical configuration. Domain renewal and Google Cloud server hosting are billed transparently at actual billing invoices provided by the registrar and Google Cloud.
               </div>
             </div>
+          </div>
+        </div>
+      )}
+
+      {/* Uploaded Screenshot Lightbox Modal */}
+      {previewImage && (
+        <div
+          className="position-fixed top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center p-3"
+          style={{ backgroundColor: 'rgba(0, 0, 0, 0.88)', zIndex: 1070 }}
+          onClick={() => setPreviewImage(null)}
+        >
+          <div className="position-relative" style={{ maxWidth: '90vw', maxHeight: '90vh' }}>
+            <button
+              onClick={() => setPreviewImage(null)}
+              className="btn btn-dark btn-sm rounded-circle position-absolute top-0 end-0 m-2 border border-light"
+              style={{ zIndex: 10 }}
+            >
+              <FaTimes />
+            </button>
+            <img
+              src={previewImage}
+              alt="Design Screenshot Preview"
+              className="img-fluid rounded-3 shadow-2xl"
+              style={{ maxHeight: '85vh', objectFit: 'contain' }}
+              onClick={(e) => e.stopPropagation()}
+            />
           </div>
         </div>
       )}

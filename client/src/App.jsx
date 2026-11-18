@@ -25,6 +25,7 @@ import Pricing from './pages/Pricing';
 import About from './pages/About';
 import Contact from './pages/Contact';
 import ProjectTracker from './pages/ProjectTracker';
+import ProjectStudioPage from './pages/ProjectStudioPage';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import Terms from './pages/Terms';
 import NotFound from './pages/NotFound';
@@ -60,6 +61,8 @@ function App() {
                   <Route path="portfolio" element={<Portfolio />} />
                   <Route path="portfolio/:slug" element={<ProjectDetail />} />
                   <Route path="pricing" element={<Pricing />} />
+                  <Route path="studio" element={<ProjectStudioPage />} />
+                  <Route path="plan" element={<ProjectStudioPage />} />
                   <Route path="track" element={<ProjectTracker />} />
                   <Route path="track/:code" element={<ProjectTracker />} />
                   <Route path="about" element={<About />} />

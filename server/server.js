@@ -41,9 +41,9 @@ app.use(
   })
 );
 
-// Body parsing
-app.use(express.json({ limit: '2mb' }));
-app.use(express.urlencoded({ extended: true, limit: '2mb' }));
+// Body parsing with 15MB limit for design screenshot uploads
+app.use(express.json({ limit: '15mb' }));
+app.use(express.urlencoded({ extended: true, limit: '15mb' }));
 
 // Health Check Endpoint
 app.get('/api/health', (req, res) => {
