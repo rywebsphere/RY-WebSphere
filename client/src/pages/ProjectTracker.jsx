@@ -115,7 +115,7 @@ const ProjectTracker = () => {
   };
 
   const currentPhaseIndex = projectData ? getPhaseStepIndex(projectData.projectPhase) : 0;
-  const whatsappPhone = settings?.whatsappNumber || '919026402646';
+  const whatsappPhone = settings?.whatsappNumber || '917800462309';
 
   const handleWhatsAppInquiry = () => {
     if (!projectData) return;
